@@ -93,15 +93,21 @@ WantedBy=timers.target
     sudo sh -c "echo \"$contents\" > /etc/systemd/system/borgbackup.timer"
 }
 
+function viewLogs {
+    journalctl -u borgbackup.service -u borgbackup.timer
+}
+
 mode="$1"
 if [ "$mode" == "backup" ]; then
     keepTrying
 elif [ "$mode" == "install" ]; then
     installService
     installTimer
+elif [ "$mode" == "viewlog" ]; then
+    viewLogs
 else
     cat <<EOF
-Usage: ./$(basename "${BASH_SOURCE[0]}") backup|install
+Usage: ./$(basename "${BASH_SOURCE[0]}") backup|install|viewlog
 
 - install generates service/timer files for scheduling the backup
 - backup runs the backup routine according to the constants in the script. You can run the script manually with that argument when testing
@@ -115,5 +121,7 @@ Making sure the timer starts again after boot is done with the following command
 
 Starting the timer is done with 
 'sudo systemctl start borgbackup.timer'
+
+Check logs with the 'viewlog' mode
 EOF
 fi
