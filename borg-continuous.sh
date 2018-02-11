@@ -7,21 +7,21 @@
 
 # SOURCE_PATHS could be something like "/ --exclude /tmp --exclude /bin"
 # Or "/home/someuser --exclude /home/someuser/.cache"
-SOURCE_PATHS="/srv/samba/public --exclude /srv/samba/public/Videos"
+SOURCE_PATHS=""
 # SOURCE_USER The user which will be running the script on the backup source machine. Must have read access to the paths in SOURCE_PATHS
-SOURCE_USER="los"
+SOURCE_USER=""
 # SOURCE_GROUP The group ditto 
-SOURCE_GROUP="los"
+SOURCE_GROUP=""
 # DESTINATION_HOST The host name of the machine to which we are backing up
-DESTINATION_HOST="ssdbuntu"
+DESTINATION_HOST=""
 # DESTINATION_USER The ssh user which will receive the backup data. Make sure to do an ssh key exchange so that borg can connect with ssh
-DESTINATION_USER="los"
+DESTINATION_USER=""
 # DESTINATION_PATH The path on the backup destination machine which has been initialized as a borg repo
-DESTINATION_PATH="/media/backupdrive/borgroot"
+DESTINATION_PATH=""
 # SECONDS_BETWEEN_POLLS How long after destination boot up should the backup start on average?
 SECONDS_BETWEEN_POLLS="20"
-# TAG_PREFIX A prefix which will be prepended to the backups. Use this to manage specifically the backups made by this script
-TAG_PREFIX="smbpublic"
+# TAG_PREFIX A prefix which will be prepended to the backups. Use this to manage specifically the backups made by this script. Can be anything.
+TAG_PREFIX=""
 # TAG How we tag the backups
 TAG="${TAG_PREFIX}-{now:%Y-%m-%d %H:%M}"
 ### END OF CONSTANTS ###
