@@ -36,6 +36,7 @@ function carryOutPrune {
 
 # Modify this function to tweak exactly how the backup gets carried out
 function carryOutBackup {
+    borg break-lock "$REPOSITORY" &&
     borg create -v --stats --compression lz4 "${REPOSITORY}::$TAG" $SOURCE_PATHS
 }
 
@@ -69,7 +70,6 @@ Type=simple
 Nice=19
 IOSchedulingClass=2
 IOSchedulingPriority=7
-ExecStartPre=$(which borg) break-lock $REPOSITORY
 ExecStart=$PATH_OF_SCRIPT backup
 User=$SOURCE_USER
 Group=$SOURCE_GROUP
