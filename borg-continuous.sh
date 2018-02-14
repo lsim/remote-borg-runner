@@ -84,7 +84,7 @@ Description=Borg Backup Timer
  
 [Timer]
 WakeSystem=false
-OnCalendar=*-*-* 0/6:00:00
+OnCalendar=*-*-* 06:00:00
 RandomizedDelaySec=10min
  
 [Install]
@@ -103,6 +103,7 @@ if [ "$mode" == "backup" ]; then
 elif [ "$mode" == "install" ]; then
     installService
     installTimer
+    sudo systemctl daemon-reload
 elif [ "$mode" == "viewlog" ]; then
     viewLogs
 else
